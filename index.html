@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 10;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        header {
+            background-color: #fff;
+            padding: 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        img{
+            width: 350px;
+            height: 350px;
+            border-radius: 80%;
+            object-fit: cover;
+            position:relative;
+            left:400px;
+            border: 3px solid #295aee;}
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #007bff;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+            background: linear-gradient(45deg, #007bff, #00ff88);
+            color: #fff;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            position:relative;
+            left:-100px;
+            top:200px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            position:relative;
+            left:-100px;
+            top:200px;
+        }
+
+        .about {
+            background-color: #89e7fa;
+            padding: 6rem 2rem;
+            max-width: auto;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #021d38;
+        }
+
+        .projects {
+            padding: 6rem 2rem;
+            background-color: #659dfd;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background-color: #2d607d;
+            color:white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgb(11, 35, 97);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-info h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .project-info a {
+            color: #012314;
+        }
+
+        .project-info a:hover {
+            color:#00ff88
+        }
+
+        .contact {
+            padding: clamp(3rem, 8vw, 100px) clamp(1rem, 3vw, 30px);
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .contact-grid {
+            background-color: rgb(47, 116, 159);
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: clamp(1rem, 3vw, 2rem);
+            padding: clamp(1rem, 3vw, 2rem);
+            border-radius: 15px;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            background: rgb(1, 42, 61);
+            padding: clamp(1.5rem, 4vw, 2rem);
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            aspect-ratio: 1;
+            width: 100%;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .contact-icon {
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            margin-bottom: clamp(0.8rem, 2vw, 1rem);
+            color: white;
+        }
+
+        .contact-title {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            font-weight: bold;
+            margin-bottom: clamp(0.4rem, 1vw, 0.5rem);
+            color: white;
+        }
+
+        .contact-info {
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            color: rgb(174, 188, 191);
+            word-break: break-word;
+            max-width: 100%;
+        }
+
+        .contact a {
+            color: #89e7fa;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .contact a:hover {
+            color: #37c4d1;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 1024px) {
+            .contact {
+                padding: 4rem 1.5rem;
+            }
+            .contact-grid {
+                gap: 1.5rem;
+                max-width: 600px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact {
+                padding: 3rem 1rem;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(4, auto);
+                gap: 1.2rem;
+                padding: 1rem;
+                max-width: 400px;
+            }
+            .contact-card {
+                aspect-ratio: auto;
+                min-height: 120px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact {
+                padding: 2rem 0.8rem;
+            }
+            .contact-grid {
+                gap: 1rem;
+                padding: 0.8rem;
+            }
+            .contact-card {
+                padding: 1.2rem;
+                min-height: 100px;
+            }
+            .contact-info {
+                font-size: 0.9rem;
+            }
+            .contact-icon {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+            }
+            .contact-title {
+                font-size: 1rem;
+                margin-bottom: 0.3rem;
+            }
+        }
+
+        footer {
+            background-color: #37c4d1;
+            color: #fff;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .nav-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #333;
+            padding: 0.5rem;
+        }
+
+        @media (max-width: 1024px) {
+            .project-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            img {
+                width: 250px;
+                height: 250px;
+                left: 50%;
+                transform: translateX(-50%);
+                margin-top: 2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.8rem;
+                left: 0;
+                top: 0;
+            }
+
+            .hero-content p {
+                left: 0;
+                top: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: #fff;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 0.5rem 0;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+                position: static;
+                margin-bottom: 1rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+                position: static;
+                margin-bottom: 0.5rem;
+            }
+
+            img {
+                width: 200px;
+                height: 200px;
+                position: relative;
+                left: 50%;
+                transform: translateX(-50%);
+                margin-top: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+
+            .about p {
+                text-align: center;
+                padding: 0 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.75rem;
+            }
+
+            img {
+                width: 150px;
+                height: 150px;
+            }
+
+            .about, .projects, .contact {
+                padding: 3rem 1rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .about p {
+                font-size: 1rem;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Himanshi Joshi</div>
+            <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Hi, I'm Himanshi Joshi</h1>
+            <p>Computer Science student</p>
+            <p>At Scaler School Of Technology</p>
+            <img src="photo.jpg" alt="My Photo">
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <h2 class="section-title">About Me</h2>
+        <p>Hi, I’m Himanshi, a motivated and curious individual who enjoys combining creativity with a practical approach to problem-solving. I’m passionate about learning, adapting to new challenges, and working with others to bring ideas to life.</p>
+    </section>
+
+    <section class="projects" id="projects">
+        <h2 class="section-title">My Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>Project 1</h3>
+                    <p><a href="http://127.0.0.1:5500/html/transform.html" target="_blank">Transform</a></p>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>Project 2</h3>
+                    <p><a href="http://127.0.0.1:5500/html/trial.html" target="_blank">Activity</a></p>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>Project 3</h3>
+                    <p><a href="http://127.0.0.1:5500/html/wheel.html" target="_blank">Giant Wheel</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2 class="section-title">Contact Me</h2>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="contact-icon">📞</div>
+                <div class="contact-title">Phone</div>
+                <div class="contact-info">8826944193</div>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">📧</div>
+                <div class="contact-title">Email</div>
+                <div class="contact-info">princy2006joshi@gmail.com</div>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">🔗</div>
+                <div class="contact-title">LinkedIn</div>
+                <div class="contact-info">
+                    <a href="https://www.linkedin.com/in/himanshi-joshi-a6936b376/" target="_blank">Connect on LinkedIn</a>
+                </div>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">📷</div>
+                <div class="contact-title">Instagram</div>
+                <div class="contact-info">
+                    <a href="https://www.instagram.com/himu_j09/?next=%2F&hl=en" target="_blank">@himu_j09</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Himanshi Joshi. All rights reserved.</p>
+    </footer>
+
+    <script>
+        
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
